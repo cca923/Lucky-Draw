@@ -15,12 +15,10 @@ const Main = styled.main`
 
 function App() {
   return (
-    <div className="App">
-      <Main>
-        <Timer />
-        <List />
-      </Main>
-    </div>
+    <Main>
+      <Timer />
+      <List />
+    </Main>
   );
 }
 

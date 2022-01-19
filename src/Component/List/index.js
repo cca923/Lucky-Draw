@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 
 import { addName, removeName } from "../../Redux/Action";
 import { DeleteButton, Button } from "../Common/button";
@@ -87,8 +87,6 @@ const NoOne = styled.div`
 const List = () => {
   const list = useSelector((state) => state.list);
   const dispatch = useDispatch();
-
-  console.log(list);
 
   const [name, setName] = useState("");
 
