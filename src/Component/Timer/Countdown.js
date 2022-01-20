@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { countdown, getTotalSeconds } from "../../Redux/Action";
 import { Button } from "../Common/button";
 
 const CountdownWrap = styled.div`
@@ -27,62 +28,94 @@ const Time = styled.div`
 `;
 
 const Countdown = ({
-  timerMinutes,
-  timerSeconds,
-  setTimerMinutes,
-  setTimerSeconds,
+  minutes,
+  seconds,
+  // setMinutes,
+  // setSeconds,
   setLoading,
   setWinner,
 }) => {
   const list = useSelector((state) => state.list);
-  const [startTimer, setStartTimer] = useState(false);
-  const minutes = Number(timerMinutes);
-  const seconds = Number(timerSeconds);
+  const totalSeconds = useSelector((state) => state.totalSeconds);
+  const dispatch = useDispatch();
+  // const [totalSeconds, setTotalSeconds] = useState();
+  // const [startTimer, setStartTimer] = useState(false);
+  // const minutes = Number(timerMinutes);
+  // const seconds = Number(timerSeconds);
+
+  const timeFormat = (num) => {
+    return num >= 10 ? num : "0" + num;
+  };
+
+  console.log("計時器重 render");
 
   useEffect(() => {
-    if (startTimer) {
-      const countdownTimer = setInterval(() => {
-        if (seconds > 0) {
-          if (seconds > 10) {
-            setTimerSeconds(seconds - 1);
-          } else {
-            setTimerSeconds("0" + (seconds - 1).toString());
-          }
-        }
+    let countdownTimer = null;
 
-        if (seconds === 0) {
-          if (minutes === 0) {
-            clearInterval(countdownTimer);
-            setStartTimer(false);
-            setLoading(false);
-
-            const winner = list[Math.floor(Math.random() * list.length)];
-            setWinner(winner);
-          } else {
-            if (minutes > 10) {
-              setTimerMinutes(minutes - 1);
-              setTimerSeconds(59);
-            } else {
-              setTimerMinutes("0" + (minutes - 1).toString());
-              setTimerSeconds(59);
-            }
-          }
-        }
+    if (totalSeconds > 0) {
+      countdownTimer = setTimeout(() => {
+        dispatch(countdown(totalSeconds));
+        // setTotalSeconds((totalSeconds) => totalSeconds - 1);
       }, 1000);
+    } else if (totalSeconds === 0) {
+      clearTimeout(countdownTimer);
+      setLoading(false);
 
-      return () => {
-        clearInterval(countdownTimer);
-      };
+      const winner = list[Math.floor(Math.random() * list.length)];
+      setWinner(winner);
     }
-  }, [startTimer, timerMinutes, timerSeconds]);
+
+    return () => {
+      clearTimeout(countdownTimer);
+    };
+  }, [totalSeconds]);
+
+  // useEffect(() => {
+  //   if (startTimer) {
+  //     const countdownTimer = setInterval(() => {
+  //       if (seconds > 0) {
+  //         if (seconds > 10) {
+  //           setSeconds(seconds - 1);
+  //         } else {
+  //           setSeconds("0" + (seconds - 1).toString());
+  //         }
+  //       }
+
+  //       if (seconds === 0) {
+  //         if (minutes === 0) {
+  //           clearInterval(countdownTimer);
+  //           setStartTimer(false);
+  //           setLoading(false);
+
+  //           const winner = list[Math.floor(Math.random() * list.length)];
+  //           setWinner(winner);
+  //         } else {
+  //           if (minutes > 10) {
+  //             setMinutes(minutes - 1);
+  //             setSeconds(59);
+  //           } else {
+  //             setMinutes("0" + (minutes - 1).toString());
+  //             setSeconds(59);
+  //           }
+  //         }
+  //       }
+  //     }, 1000);
+
+  //     return () => {
+  //       clearInterval(countdownTimer);
+  //     };
+  //   }
+  // }, [startTimer, minutes, seconds]);
 
   return (
     <CountdownWrap>
       <StartButton
         onClick={() => {
-          if (timerMinutes !== "00" || timerSeconds !== "00") {
+          if (minutes !== "00" || seconds !== "00") {
             if (list.length !== 0) {
-              setStartTimer(true);
+              dispatch(getTotalSeconds(Number(minutes) * 60 + Number(seconds)));
+              // setTotalSeconds(Number(minutes) * 60 + Number(seconds));
+              // setStartTimer(true);
               setLoading(true);
               setWinner("");
             } else {
@@ -95,10 +128,14 @@ const Countdown = ({
         開始倒數
       </StartButton>
       <Time>
-        {timerMinutes}:{timerSeconds}
+        {/* {minutes}：{seconds} */}
+        {totalSeconds !== null
+          ? timeFormat(Math.floor(totalSeconds / 60))
+          : minutes}
+        :{totalSeconds !== null ? timeFormat(totalSeconds % 60) : seconds}
       </Time>
     </CountdownWrap>
   );
 };
 
-export default Countdown;
+export default React.memo(Countdown);

@@ -13,6 +13,7 @@ const TimerWrap = styled.div`
 
   @media only screen and (max-width: 900px) {
     width: 100%;
+    height: fit-content;
   }
 `;
 
@@ -27,6 +28,7 @@ const Title = styled.div`
 const ResultWrap = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 15rem;
   display: flex;
   padding: 2rem 1rem;
 
@@ -57,6 +59,9 @@ const Winner = styled.div`
   font-size: 3rem;
   font-weight: 600;
   margin: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Loading = styled.div`
@@ -76,25 +81,22 @@ const ClearResultButton = styled(DeleteButton)`
 `;
 
 const Timer = () => {
-  const [timerMinutes, setTimerMinutes] = useState("00");
-  const [timerSeconds, setTimerSeconds] = useState("00");
+  const [minutes, setMinutes] = useState("00");
+  const [seconds, setSeconds] = useState("00");
   const [loading, setLoading] = useState(false);
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState();
 
   return (
     <TimerWrap>
       <Title>抽獎時間</Title>
 
-      <Setting
-        setTimerMinutes={setTimerMinutes}
-        setTimerSeconds={setTimerSeconds}
-      />
+      <Setting setMinutes={setMinutes} setSeconds={setSeconds} />
 
       <Countdown
-        timerMinutes={timerMinutes}
-        timerSeconds={timerSeconds}
-        setTimerMinutes={setTimerMinutes}
-        setTimerSeconds={setTimerSeconds}
+        minutes={minutes}
+        seconds={seconds}
+        // setMinutes={setMinutes}
+        // setSeconds={setSeconds}
         setLoading={setLoading}
         setWinner={setWinner}
       />
@@ -107,8 +109,14 @@ const Timer = () => {
             <Loading />
           ) : (
             <>
-              <ClearResultButton onClick={() => setWinner("")} />
-              <Winner>{winner}</Winner>
+              {winner ? (
+                <>
+                  <ClearResultButton onClick={() => setWinner()} />
+                  <Winner>{winner}</Winner>
+                </>
+              ) : (
+                <Winner>?</Winner>
+              )}
             </>
           )}
         </WinnerWrap>

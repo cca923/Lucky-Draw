@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { getTotalSeconds } from "../../Redux/Action";
 import { Button } from "../Common/button";
 
 const SettingWrap = styled.div`
@@ -64,12 +66,14 @@ const ErrorWrap = styled.div`
   margin-top: 0.5rem;
 `;
 
-const Setting = ({ setTimerMinutes, setTimerSeconds }) => {
+const Setting = ({ setMinutes, setSeconds }) => {
+  const dispatch = useDispatch();
   const inputMinutes = useRef();
   const inputSeconds = useRef();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
 
   const setTimer = () => {
+    dispatch(getTotalSeconds(null));
     const minutes = inputMinutes.current.value;
     const seconds = inputSeconds.current.value;
 
@@ -80,18 +84,18 @@ const Setting = ({ setTimerMinutes, setTimerSeconds }) => {
         } else if (seconds > 59) {
           setErrorMessage("請輸入介於 0 - 59 之間的秒數");
         } else {
-          setErrorMessage("");
+          setErrorMessage();
 
           if (minutes.length > 1) {
-            setTimerMinutes(minutes);
+            setMinutes(minutes);
           } else {
-            setTimerMinutes("0" + minutes);
+            setMinutes("0" + minutes);
           }
 
           if (seconds.length > 1) {
-            setTimerSeconds(seconds);
+            setSeconds(seconds);
           } else {
-            setTimerSeconds("0" + seconds);
+            setSeconds("0" + seconds);
           }
         }
       } else {
@@ -101,28 +105,28 @@ const Setting = ({ setTimerMinutes, setTimerSeconds }) => {
       if (minutes > 59) {
         setErrorMessage("請輸入介於 0 - 59 之間的分鐘數");
       } else {
-        setErrorMessage("");
+        setErrorMessage();
 
         if (minutes.length > 1) {
-          setTimerMinutes(minutes);
-          setTimerSeconds("00");
+          setMinutes(minutes);
+          setSeconds("00");
         } else {
-          setTimerMinutes("0" + minutes);
-          setTimerSeconds("00");
+          setMinutes("0" + minutes);
+          setSeconds("00");
         }
       }
     } else if (/^[0-9]+$/.test(seconds)) {
       if (seconds > 59) {
         setErrorMessage("請輸入介於 0 - 59 之間的秒數");
       } else {
-        setErrorMessage("");
+        setErrorMessage();
 
         if (seconds.length > 1) {
-          setTimerMinutes("00");
-          setTimerSeconds(seconds);
+          setMinutes("00");
+          setSeconds(seconds);
         } else {
-          setTimerMinutes("00");
-          setTimerSeconds("0" + seconds);
+          setMinutes("00");
+          setSeconds("0" + seconds);
         }
       }
     } else {
@@ -131,9 +135,9 @@ const Setting = ({ setTimerMinutes, setTimerSeconds }) => {
   };
 
   const resetTimer = () => {
-    setTimerMinutes("00");
-    setTimerSeconds("00");
-    setErrorMessage("");
+    setMinutes("00");
+    setSeconds("00");
+    setErrorMessage();
 
     inputMinutes.current.value = "";
     inputSeconds.current.value = "";
@@ -160,9 +164,9 @@ const Setting = ({ setTimerMinutes, setTimerSeconds }) => {
         </ButtonWrap>
       </SetTimerWrap>
 
-      {errorMessage !== "" ? <ErrorWrap>{errorMessage}</ErrorWrap> : null}
+      {errorMessage ? <ErrorWrap>{errorMessage}</ErrorWrap> : null}
     </SettingWrap>
   );
 };
 
-export default Setting;
+export default React.memo(Setting);

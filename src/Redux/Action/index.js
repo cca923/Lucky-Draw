@@ -11,3 +11,17 @@ export const removeName = (name) => {
     payload: name,
   };
 };
+
+export const getTotalSeconds = (seconds) => {
+  return {
+    type: "GET_TOTAL_SECONDS",
+    payload: seconds,
+  };
+};
+
+export const countdown = (seconds) => {
+  return {
+    type: "COUNTDOWN",
+    payload: seconds,
+  };
+};
