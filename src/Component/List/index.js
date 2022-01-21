@@ -35,6 +35,8 @@ const AddButton = styled(Button)`
   min-width: 5rem;
   background-color: #abc4ff;
   border: 2px solid #cddafd;
+  cursor: ${(props) =>
+    props.name === "" || props.timerStatus ? "not-allowed" : "pointer"};
 
   &:hover {
     background-color: #93aeed;
@@ -84,26 +86,29 @@ const NoOne = styled.div`
   line-height: 2rem;
 `;
 
+const RemoveNameButton = styled(DeleteButton)`
+  display: ${(props) => (props.timerStatus ? "none" : "in-line")};
+`;
+
 const List = () => {
   const list = useSelector((state) => state.list);
+  const timerStatus = useSelector((state) => state.timerStatus);
   const dispatch = useDispatch();
-
+  
   const [name, setName] = useState("");
 
-  const handleAdd = () => {
-    if (name !== "") {
-      const nameExisted = list.filter((eachPerson) => {
-        return eachPerson === name;
-      });
+  console.log("list 重新 render");
 
-      if (nameExisted.length === 0) {
-        dispatch(addName(name));
-        setName("");
-      } else {
-        window.alert("已經在抽獎名單中囉！");
-      }
+  const handleAdd = () => {
+    const nameExisted = list.filter((eachPerson) => {
+      return eachPerson === name;
+    });
+
+    if (nameExisted.length === 0) {
+      dispatch(addName(name));
+      setName("");
     } else {
-      window.alert("請輸入姓名！");
+      window.alert("已經在抽獎名單中囉！");
     }
   };
 
@@ -123,8 +128,15 @@ const List = () => {
         type="text"
         placeholder="請輸入姓名"
         onChange={(e) => setName(e.target.value)}
+        disabled={timerStatus ? true : false}
       />
-      <AddButton onClick={handleAdd}>新增</AddButton>
+      <AddButton
+        name={name}
+        timerStatus={timerStatus}
+        onClick={handleAdd}
+        disabled={name === "" || timerStatus ? true : false}>
+        新增
+      </AddButton>
 
       <PeopleWrap>
         {list.length !== 0 ? (
@@ -133,7 +145,10 @@ const List = () => {
               <EachPerson data-name={eachPerson} key={eachPerson}>
                 <Photo />
                 <Name>{eachPerson}</Name>
-                <DeleteButton onClick={(e) => handleRemove(e)} />
+                <RemoveNameButton
+                  timerStatus={timerStatus}
+                  onClick={(e) => handleRemove(e)}
+                />
               </EachPerson>
             );
           })

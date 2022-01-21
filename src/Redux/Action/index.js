@@ -25,3 +25,10 @@ export const countdown = (seconds) => {
     payload: seconds,
   };
 };
+
+export const changeTimerStatus = (status) => {
+  return {
+    type: "CHANGE_TIMER_STATUS",
+    payload: status,
+  };
+};

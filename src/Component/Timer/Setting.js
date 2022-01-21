@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { getTotalSeconds } from "../../Redux/Action";
@@ -49,11 +49,13 @@ const SettingButton = styled(Button)`
   margin: auto 1rem;
   background-color: #abc4ff;
   border: 2px solid #cddafd;
+  cursor: ${(props) => (props.timerStatus ? "not-allowed" : "pointer")};
 `;
 
 const ResetButton = styled(Button)`
   margin: auto;
   border: 2px solid #e9e9e9;
+  cursor: ${(props) => (props.timerStatus ? "not-allowed" : "pointer")};
 
   &:hover {
     background-color: #ced4da;
@@ -66,14 +68,17 @@ const ErrorWrap = styled.div`
   margin-top: 0.5rem;
 `;
 
-const Setting = ({ setMinutes, setSeconds }) => {
+const Setting = () => {
+  const timerStatus = useSelector((state) => state.timerStatus);
   const dispatch = useDispatch();
+
   const inputMinutes = useRef();
   const inputSeconds = useRef();
   const [errorMessage, setErrorMessage] = useState();
 
+  console.log("setting 重新 render");
+
   const setTimer = () => {
-    dispatch(getTotalSeconds(null));
     const minutes = inputMinutes.current.value;
     const seconds = inputSeconds.current.value;
 
@@ -85,18 +90,7 @@ const Setting = ({ setMinutes, setSeconds }) => {
           setErrorMessage("請輸入介於 0 - 59 之間的秒數");
         } else {
           setErrorMessage();
-
-          if (minutes.length > 1) {
-            setMinutes(minutes);
-          } else {
-            setMinutes("0" + minutes);
-          }
-
-          if (seconds.length > 1) {
-            setSeconds(seconds);
-          } else {
-            setSeconds("0" + seconds);
-          }
+          dispatch(getTotalSeconds(Number(minutes) * 60 + Number(seconds)));
         }
       } else {
         setErrorMessage("請輸入介於 0 - 59 之間的正整數");
@@ -106,28 +100,14 @@ const Setting = ({ setMinutes, setSeconds }) => {
         setErrorMessage("請輸入介於 0 - 59 之間的分鐘數");
       } else {
         setErrorMessage();
-
-        if (minutes.length > 1) {
-          setMinutes(minutes);
-          setSeconds("00");
-        } else {
-          setMinutes("0" + minutes);
-          setSeconds("00");
-        }
+        dispatch(getTotalSeconds(Number(minutes) * 60));
       }
     } else if (/^[0-9]+$/.test(seconds)) {
       if (seconds > 59) {
         setErrorMessage("請輸入介於 0 - 59 之間的秒數");
       } else {
         setErrorMessage();
-
-        if (seconds.length > 1) {
-          setMinutes("00");
-          setSeconds(seconds);
-        } else {
-          setMinutes("00");
-          setSeconds("0" + seconds);
-        }
+        dispatch(getTotalSeconds(Number(seconds)));
       }
     } else {
       setErrorMessage("請輸入介於 0 - 59 之間的正整數");
@@ -135,8 +115,7 @@ const Setting = ({ setMinutes, setSeconds }) => {
   };
 
   const resetTimer = () => {
-    setMinutes("00");
-    setSeconds("00");
+    dispatch(getTotalSeconds(0));
     setErrorMessage();
 
     inputMinutes.current.value = "";
@@ -159,8 +138,18 @@ const Setting = ({ setMinutes, setSeconds }) => {
         </InputWrap>
 
         <ButtonWrap>
-          <SettingButton onClick={setTimer}>設定</SettingButton>
-          <ResetButton onClick={resetTimer}>重設</ResetButton>
+          <SettingButton
+            timerStatus={timerStatus}
+            onClick={setTimer}
+            disabled={timerStatus ? true : false}>
+            設定
+          </SettingButton>
+          <ResetButton
+            timerStatus={timerStatus}
+            onClick={resetTimer}
+            disabled={timerStatus ? true : false}>
+            重設
+          </ResetButton>
         </ButtonWrap>
       </SetTimerWrap>
 
@@ -169,4 +158,4 @@ const Setting = ({ setMinutes, setSeconds }) => {
   );
 };
 
-export default React.memo(Setting);
+export default Setting;
