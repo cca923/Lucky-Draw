@@ -76,8 +76,6 @@ const Setting = () => {
   const inputSeconds = useRef();
   const [errorMessage, setErrorMessage] = useState();
 
-  console.log("setting 重新 render");
-
   const setTimer = () => {
     const minutes = inputMinutes.current.value;
     const seconds = inputSeconds.current.value;
@@ -158,4 +156,4 @@ const Setting = () => {
   );
 };
 
-export default Setting;
+export default React.memo(Setting);

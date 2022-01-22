@@ -1,8 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { DeleteButton } from "../Common/button";
-import { useSelector } from "react-redux";
 
 const ResultWrap = styled.div`
   width: 100%;
@@ -61,7 +61,6 @@ const ClearResultButton = styled(DeleteButton)`
 
 const Winner = ({ winner, setWinner }) => {
   const timerStatus = useSelector((state) => state.timerStatus);
-  console.log("Winner 重新 render");
 
   return (
     <ResultWrap>
@@ -71,14 +70,8 @@ const Winner = ({ winner, setWinner }) => {
           <Loading />
         ) : (
           <>
-            {winner ? (
-              <>
-                <ClearResultButton onClick={() => setWinner()} />
-                <WinnerName>{winner}</WinnerName>
-              </>
-            ) : (
-              <WinnerName>?</WinnerName>
-            )}
+            {winner ? <ClearResultButton onClick={() => setWinner()} /> : null}
+            {<WinnerName>{winner || "?"}</WinnerName>}
           </>
         )}
       </WinnerWrap>

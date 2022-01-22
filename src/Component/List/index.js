@@ -87,17 +87,15 @@ const NoOne = styled.div`
 `;
 
 const RemoveNameButton = styled(DeleteButton)`
-  display: ${(props) => (props.timerStatus ? "none" : "in-line")};
+  display: ${(props) => (props.timerStatus ? "none" : "inline-block")};
 `;
 
 const List = () => {
   const list = useSelector((state) => state.list);
   const timerStatus = useSelector((state) => state.timerStatus);
   const dispatch = useDispatch();
-  
-  const [name, setName] = useState("");
 
-  console.log("list 重新 render");
+  const [name, setName] = useState("");
 
   const handleAdd = () => {
     const nameExisted = list.filter((eachPerson) => {

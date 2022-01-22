@@ -33,8 +33,6 @@ const Countdown = ({ setWinner }) => {
   const timerStatus = useSelector((state) => state.timerStatus);
   const dispatch = useDispatch();
 
-  console.log("計時器重 render");
-
   const timeFormat = (num) => {
     return num >= 10 ? num : "0" + num;
   };
