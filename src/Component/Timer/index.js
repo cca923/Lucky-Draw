@@ -7,7 +7,6 @@ import Winner from "./Winner";
 
 const TimerWrap = styled.div`
   width: 50%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 

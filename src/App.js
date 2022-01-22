@@ -6,7 +6,7 @@ import List from "./Component/List";
 
 const Main = styled.main`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 
   @media only screen and (max-width: 900px) {
     flex-direction: column;

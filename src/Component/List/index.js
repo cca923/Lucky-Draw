@@ -44,6 +44,7 @@ const AddButton = styled(Button)`
 `;
 
 const PeopleWrap = styled.div`
+  min-height: calc(100% - 9.5rem);
   height: calc(100vh - 9.5rem);
   display: flex;
   flex-direction: column;
