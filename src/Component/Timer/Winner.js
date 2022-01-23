@@ -35,8 +35,10 @@ const WinnerWrap = styled.div`
 `;
 
 const WinnerName = styled.div`
+  max-width: 80%;
   font-size: 3rem;
   font-weight: 600;
+  line-height: 5rem;
   margin: auto;
   overflow: hidden;
   text-overflow: ellipsis;

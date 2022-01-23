@@ -78,8 +78,11 @@ const Photo = styled.div`
 `;
 
 const Name = styled.div`
-  display: flex;
-  align-items: center;
+  max-width: 80%;
+  line-height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const NoOne = styled.div`
