@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { StyledBlock, StyledTitle } from "../../../styles";
 import { StyledCommonButton } from "../../../styles/button";
-import { listSelector } from "../../../redux/selector";
-import { setActInfo } from "../../../redux/action";
+import { listSelector } from "../../../store/selector";
+import { setActInfo } from "../../../store/action";
 import Setting from "./Setting";
 import Countdown from "./Countdown";
 import useCountdown from "../../../hooks/useCountdown";

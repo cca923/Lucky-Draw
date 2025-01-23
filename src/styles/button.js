@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { layout, color, space } from "styled-system";
-import Button from "../component/Button";
+import Button from "../components/Button";
 
 export const StyledCommonButton = styled(Button)`
   min-width: 5rem;

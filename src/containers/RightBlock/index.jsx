@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { addName, removeName } from "../../redux/action";
+import { addName, removeName } from "../../store/action";
 import { StyledContainer } from "./styles";
 import { StyledBlock, StyledTitle } from "../../styles";
-import { listSelector, actInfoSelector } from "../../redux/selector";
+import { listSelector, actInfoSelector } from "../../store/selector";
 import AddNameField from "./AddNameField";
 import List from "./List";
 
