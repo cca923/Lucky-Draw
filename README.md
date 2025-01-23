@@ -1,27 +1,28 @@
 # Lucky-Draw
 
-A simple lucky draw webapp built with React.js, Redux and styled-components.
+A simple lucky draw web app built using React.js, Redux, and styled-components.
 
-![project-demo](media/demo.gif)
+![demo](https://github.com/user-attachments/assets/71329f65-ede1-429c-854c-95dcc154a352)
 
 ## Installation
 
 ```shell
 $ git clone https://github.com/cca923/Lucky-Draw.git
 $ cd lucky-draw
-$ npm install && npm start
+$ npm install
+$ npm start
 ```
 
 ## Features
 
-### Countdown Timer
+### Timer setting
 
-- Set/Reset countdown timer by entering minutes or seconds, then click "開始倒數" to get started.
+- Enter minutes or seconds to set or reset the timer, then click "Start" to begin the countdown.
 
-### Participant List
+### Current Participants
 
-- Easily manage list by entering/removing name.
+- Easily manage the list by adding or removing names.
 
 ### Responsive Web Design (RWD)
 
-- Support Desktop version and Tablet version (900px as break point).
+- Supports both desktop and tablet versions, with a breakpoint at 900px.
