@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CommonButton } from "../../../component/CommonButton";
+import { StyledCommonButton } from "../../../styles/button";
 
 export const SettingWrap = styled.div`
   display: flex;
@@ -41,14 +41,14 @@ export const ButtonWrap = styled.div`
   display: flex;
 `;
 
-export const SettingButton = styled(CommonButton)`
+export const SettingButton = styled(StyledCommonButton)`
   margin: auto 1rem;
   background-color: #abc4ff;
   border: 2px solid #cddafd;
   cursor: ${(props) => (props.timerStatus ? "not-allowed" : "pointer")};
 `;
 
-export const ResetButton = styled(CommonButton)`
+export const ResetButton = styled(StyledCommonButton)`
   margin: auto;
   border: 2px solid #e9e9e9;
   cursor: ${(props) => (props.timerStatus ? "not-allowed" : "pointer")};

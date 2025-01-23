@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { countdown, changeTimerStatus } from "../../../Redux/Action";
+import { countdown, changeTimerStatus } from "../../../redux/action";
 import { CountdownWrap, StartButton, Time } from "./styles";
 
 const Countdown = ({ setWinner }) => {
@@ -49,7 +49,7 @@ const Countdown = ({ setWinner }) => {
         }}
         disabled={totalSeconds ? false : true}
       >
-        開始倒數
+        Start
       </StartButton>
       <Time>
         {timeFormat(Math.floor(totalSeconds / 60))}:

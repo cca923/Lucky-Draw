@@ -3,22 +3,22 @@ import React, { useState } from "react";
 import Setting from "./Setting";
 import Countdown from "./Countdown";
 import Result from "./Result";
-import { TimerWrap, Title } from "./styles";
+import { StyledContainer } from "./styles";
+import { StyledTitle } from "../../styles";
 
 const Timer = () => {
   const [winner, setWinner] = useState();
 
   return (
-    <TimerWrap>
-      <Title>抽獎時間</Title>
-
+    <StyledContainer>
+      <StyledTitle bg="#e9e9e9">Timer Setting</StyledTitle>
       <Setting />
 
       <Countdown setWinner={setWinner} />
 
-      <Title>抽獎結果</Title>
+      <StyledTitle bg="#e9e9e9">Result</StyledTitle>
       <Result winner={winner} setWinner={setWinner} />
-    </TimerWrap>
+    </StyledContainer>
   );
 };
 

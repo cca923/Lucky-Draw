@@ -1,12 +1,11 @@
 import styled from "styled-components";
-
-import { CommonButton } from "../../../component/CommonButton";
+import { StyledCommonButton } from "../../../styles/button";
 
 export const CountdownWrap = styled.div`
   padding: 1rem;
 `;
 
-export const StartButton = styled(CommonButton)`
+export const StartButton = styled(StyledCommonButton)`
   width: 100%;
   background-color: #9fa0ff;
   border: 2px solid #cddafd;

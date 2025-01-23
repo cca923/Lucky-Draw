@@ -1,9 +1,8 @@
 import styled from "styled-components";
+import { StyledRemoveButton } from "../../../styles/button";
 
-import { RemoveButton } from "../../../component/RemoveButton";
-
-export const ResultWrap = styled.div`
-  width: 100%;
+export const StyledContainer = styled.div`
+  flex: 1;
   height: 100%;
   min-height: 15rem;
   display: flex;
@@ -53,7 +52,7 @@ export const Loading = styled.div`
   background-position: center;
 `;
 
-export const ClearResultButton = styled(RemoveButton)`
+export const ClearResultButton = styled(StyledRemoveButton)`
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;

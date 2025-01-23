@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getTotalSeconds } from "../../../Redux/Action";
+import { getTotalSeconds } from "../../../redux/action";
 import {
   ButtonWrap,
   EachInput,
@@ -12,8 +12,9 @@ import {
   SetTimerWrap,
   SettingButton,
   SettingWrap,
-  TimeInput,
 } from "./styles";
+
+import { StyledInput } from "../../../styles";
 
 const Setting = () => {
   const timerStatus = useSelector((state) => state.timerStatus);
@@ -72,12 +73,12 @@ const Setting = () => {
       <SetTimerWrap>
         <InputWrap>
           <EachInput>
-            <TimeInput type="number" ref={inputMinutes} min="0" />
+            <StyledInput type="number" ref={inputMinutes} min="0" />
             <InputUnit>分</InputUnit>
           </EachInput>
 
           <EachInput>
-            <TimeInput type="number" ref={inputSeconds} min="0" />
+            <StyledInput type="number" ref={inputSeconds} min="0" />
             <InputUnit>秒</InputUnit>
           </EachInput>
         </InputWrap>
@@ -88,14 +89,14 @@ const Setting = () => {
             onClick={setTimer}
             disabled={timerStatus ? true : false}
           >
-            設定
+            Set
           </SettingButton>
           <ResetButton
             timerStatus={timerStatus}
             onClick={resetTimer}
             disabled={timerStatus ? true : false}
           >
-            重設
+            Clear
           </ResetButton>
         </ButtonWrap>
       </SetTimerWrap>

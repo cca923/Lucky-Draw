@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import {
   ClearResultButton,
   Loading,
-  ResultWrap,
+  StyledContainer,
   WinnerImageWrap,
   WinnerName,
   WinnerWrap,
@@ -13,7 +13,7 @@ const Result = ({ winner, setWinner }) => {
   const timerStatus = useSelector((state) => state.timerStatus);
 
   return (
-    <ResultWrap>
+    <StyledContainer>
       <WinnerImageWrap />
       <WinnerWrap>
         {timerStatus ? (
@@ -25,7 +25,7 @@ const Result = ({ winner, setWinner }) => {
           </>
         )}
       </WinnerWrap>
-    </ResultWrap>
+    </StyledContainer>
   );
 };
 
