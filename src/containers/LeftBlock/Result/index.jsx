@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { actInfoSelector } from "../../../redux/selector";
+import { actInfoSelector } from "../../../store/selector";
 import { StyledTitle, StyledBlock } from "../../../styles";
 import { StyledContainer, StyledImage } from "./styles";
 import Winner from "./Winner";

@@ -12,7 +12,7 @@ import {
 
 import { StyledInput } from "../../../../styles";
 import { StyledCommonButton } from "../../../../styles/button";
-import { actInfoSelector } from "../../../../redux/selector";
+import { actInfoSelector } from "../../../../store/selector";
 import { isValidTimeInput } from "../../../../utils";
 
 const Setting = ({ className, onSet }) => {

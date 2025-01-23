@@ -39,4 +39,5 @@ export const StyledClearButton = styled(StyledCommonButton)`
 export const StyledError = styled.div`
   text-align: center;
   color: red;
+  margin-top: 0.5rem;
 `;
