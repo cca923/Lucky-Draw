@@ -1,10 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { DeleteButton } from "../Common/button";
+import { RemoveButton } from "../../../component/RemoveButton";
 
-const ResultWrap = styled.div`
+export const ResultWrap = styled.div`
   width: 100%;
   height: 100%;
   min-height: 15rem;
@@ -16,7 +14,7 @@ const ResultWrap = styled.div`
   }
 `;
 
-const WinnerImageWrap = styled.div`
+export const WinnerImageWrap = styled.div`
   width: 50%;
   border-radius: 20px 0 0 20px;
   background-image: url(/images/winner.png);
@@ -25,7 +23,7 @@ const WinnerImageWrap = styled.div`
   background-position: center;
 `;
 
-const WinnerWrap = styled.div`
+export const WinnerWrap = styled.div`
   width: 50%;
   height: 100%;
   border-radius: 0 20px 20px 0;
@@ -34,7 +32,7 @@ const WinnerWrap = styled.div`
   position: relative;
 `;
 
-const WinnerName = styled.div`
+export const WinnerName = styled.div`
   max-width: 80%;
   font-size: 3rem;
   font-weight: 600;
@@ -45,7 +43,7 @@ const WinnerName = styled.div`
   white-space: nowrap;
 `;
 
-const Loading = styled.div`
+export const Loading = styled.div`
   width: 100%;
   object-fit: cover;
   border-radius: 20px 0 0 20px;
@@ -55,30 +53,8 @@ const Loading = styled.div`
   background-position: center;
 `;
 
-const ClearResultButton = styled(DeleteButton)`
+export const ClearResultButton = styled(RemoveButton)`
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
 `;
-
-const Winner = ({ winner, setWinner }) => {
-  const timerStatus = useSelector((state) => state.timerStatus);
-
-  return (
-    <ResultWrap>
-      <WinnerImageWrap />
-      <WinnerWrap>
-        {timerStatus ? (
-          <Loading />
-        ) : (
-          <>
-            {winner ? <ClearResultButton onClick={() => setWinner()} /> : null}
-            {<WinnerName>{winner || "?"}</WinnerName>}
-          </>
-        )}
-      </WinnerWrap>
-    </ResultWrap>
-  );
-};
-
-export default Winner;

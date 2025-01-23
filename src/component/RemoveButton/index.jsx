@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DeleteButton = styled.div`
+export const RemoveButton = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   display: inline-block;
@@ -12,15 +12,5 @@ export const DeleteButton = styled.div`
 
   &:hover {
     background-image: url("/images/remove-hover.png");
-  }
-`;
-
-export const Button = styled.button`
-  width: 5rem;
-  height: 3rem;
-  border-radius: 30px;
-
-  &:hover {
-    background-color: #93aeed;
   }
 `;

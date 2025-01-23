@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Timer from "./Component/Timer";
-import List from "./Component/List";
+import Timer from "./container/Timer";
+import List from "./container/List";
 
 const Main = styled.main`
   display: flex;

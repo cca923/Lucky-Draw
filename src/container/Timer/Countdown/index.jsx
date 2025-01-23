@@ -1,31 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
 
-import { countdown, changeTimerStatus } from "../../Redux/Action";
-import { Button } from "../Common/button";
-
-const CountdownWrap = styled.div`
-  padding: 1rem;
-`;
-
-const StartButton = styled(Button)`
-  width: 100%;
-  background-color: #9fa0ff;
-  border: 2px solid #cddafd;
-  cursor: ${(props) => (props.totalSeconds ? "pointer" : "not-allowed")};
-
-  &:hover {
-    background-color: #8187dc;
-  }
-`;
-
-const Time = styled.div`
-  width: 100%;
-  font-size: 5rem;
-  text-align: center;
-  margin: 1.5rem 0;
-`;
+import { countdown, changeTimerStatus } from "../../../Redux/Action";
+import { CountdownWrap, StartButton, Time } from "./styles";
 
 const Countdown = ({ setWinner }) => {
   const list = useSelector((state) => state.list);
@@ -70,7 +47,8 @@ const Countdown = ({ setWinner }) => {
             window.alert("目前沒有人參加抽獎，所以無法倒數喔！");
           }
         }}
-        disabled={totalSeconds ? false : true}>
+        disabled={totalSeconds ? false : true}
+      >
         開始倒數
       </StartButton>
       <Time>
