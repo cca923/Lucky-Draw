@@ -5,18 +5,18 @@ import { StyledCommonButton } from "../../../styles/button";
 import { StyledInput } from "../../../styles";
 
 const AddNameField = ({ className, onAdd, isDisabled = false }) => {
-  const inputRef = useRef();
+  const nameRef = useRef();
 
   const handleAdd = () => {
-    const name = inputRef?.current?.value?.trim();
-    onAdd({ name });
-    inputRef.current.value = "";
+    const name = nameRef?.current?.value?.trim();
+    onAdd?.({ name });
+    nameRef.current.value = "";
   };
 
   return (
     <div className={className}>
       <StyledInput
-        ref={inputRef}
+        ref={nameRef}
         type="text"
         placeholder="Enter a name"
         disabled={isDisabled}

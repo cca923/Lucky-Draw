@@ -1,12 +1,22 @@
-const listReducer = (state = [], action) => {
-  switch (action.type) {
+const initialState = {
+  list: [],
+};
+
+const listReducer = (state = initialState, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
     case "ADD_NAME":
-      return [...state, action.payload];
+      return {
+        list: [...state.list, payload.name],
+      };
 
     case "REMOVE_NAME":
-      return state.filter((eachState) => {
-        return eachState !== action.payload;
-      });
+      const list = state.list?.filter((data) => data !== payload.name);
+
+      return {
+        list,
+      };
 
     default:
       return state;

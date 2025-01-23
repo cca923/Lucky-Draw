@@ -1,16 +1,20 @@
 import styled from "styled-components";
-import { color, space } from "styled-system";
+import { layout, color, space } from "styled-system";
 import Button from "../component/Button";
 
 export const StyledCommonButton = styled(Button)`
   min-width: 5rem;
   height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0.1rem solid #cddafd;
   background: #abc4ff;
   border-radius: 16rem;
   cursor: pointer;
   ${color};
   ${space};
+  ${layout};
 
   &:disabled {
     cursor: not-allowed;

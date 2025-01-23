@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import { color, layout, space, flexbox } from "styled-system";
+import { color, layout, space, borderRadius } from "styled-system";
 
 export const StyledContainer = styled.div`
   display: flex;
+  min-height: 680px;
   height: 100vh;
   font-family: "Roboto Condensed", sans-serif;
   font-size: 1rem;
 
   @media only screen and (max-width: 900px) {
     flex-direction: column;
+    min-width: 450px;
   }
 `;
 
@@ -20,6 +22,7 @@ export const StyledCustomImage = styled.img`
   pointer-events: none;
   ${layout};
   ${space};
+  ${borderRadius};
 `;
 
 export const StyledTitle = styled.div`
@@ -44,4 +47,11 @@ export const StyledBlock = styled.div`
   overflow: hidden;
   ${layout};
   ${space};
+`;
+
+export const StyledLoading = styled.div`
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem 0 0 1rem;
+  background: url("/images/loading.gif") no-repeat center/180%;
 `;

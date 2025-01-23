@@ -1,14 +1,14 @@
 import React from "react";
 
-import Timer from "./container/Timer";
-import Board from "./container/Board";
+import LeftBlock from "./container/LeftBlock";
+import RightBlock from "./container/RightBlock";
 import { StyledContainer } from "./styles";
 
 function App() {
   return (
     <StyledContainer>
-      <Timer />
-      <Board />
+      <LeftBlock />
+      <RightBlock />
     </StyledContainer>
   );
 }

@@ -10,7 +10,7 @@ import { StyledName } from "./styles";
 
 const List = ({ className, list, canRemove = true, onRemove }) => {
   const handleRemove = ({ name }) => {
-    onRemove({ name });
+    onRemove?.({ name });
   };
 
   if (list?.length === 0) {
