@@ -2,7 +2,8 @@
 
 A simple lucky draw web app built using React.js, Redux, and styled-components.
 
-![demo](https://github.com/user-attachments/assets/71329f65-ede1-429c-854c-95dcc154a352)
+![demo](https://github.com/user-attachments/assets/90828f42-27b2-4499-bf90-866580aeab41)
+
 
 ## Installation
 
