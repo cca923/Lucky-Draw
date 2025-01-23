@@ -1,12 +1,10 @@
 import { combineReducers } from "redux";
 import listReducer from "./listReducer";
-import totalSecondsReducer from "./totalSecondsReducer";
-import timerStatusReducer from "./timerStatusReducer";
+import actInfoReducer from "./actInfoReducer";
 
 const allReducers = combineReducers({
   list: listReducer,
-  totalSeconds: totalSecondsReducer,
-  timerStatus: timerStatusReducer,
+  actInfo: actInfoReducer,
 });
 
 export default allReducers;
